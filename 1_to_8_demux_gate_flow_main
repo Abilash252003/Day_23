@@ -1,0 +1,28 @@
+//100 days of RTL//
+
+//Abilash P//
+
+//1:8 Demultiplexer in gate flow or structural modeling//
+
+module demux_1_to_8 (D, S0, S1, S2, Y);
+
+input  D, S2, S1, S0;
+
+output [7:0]Y;
+
+wire P0, P1, P2;
+
+not n1 (P0, S0);
+not n2 (P1, S1);
+not n3 (P2, S2);
+
+and a1 (Y[0], P2, P1, P0, D);
+and a2 (Y[1], P2, P1, S0, D);
+and a3 (Y[2], P2, S1, P0, D);
+and a4 (Y[3], P2, S1, S0, D);
+and a5 (Y[4], S2, P1, P0, D);
+and a6 (Y[5], S2, P1, S0, D);
+and a7 (Y[6], S2, S1, P0, D);
+and a8 (Y[7], S2, S1, S0, D); 
+
+endmodule
