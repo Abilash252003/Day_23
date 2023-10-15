@@ -1,0 +1,38 @@
+//100 days of RTL//
+
+//Abilash P//
+
+//1:8 Demultiplexer test bench//
+
+module demux_1_to_8_tb ();
+
+reg  D, S2, S1, S0;
+wire [7:0]Y;
+
+demux_1_to_8 DEM1 (.D(D), .S2(S2), .S1(S1), .S0(S0), .Y(Y));
+
+integer i;
+
+task select ();
+begin
+  for(i=0; i<8; i=i+1)
+  begin
+     {S2, S1, S0} = i;
+     #20;
+     $display("The select line  S2 = %b-----S1 = %b-----S0 = %b", S2, S1, S0);
+     $display("The Output value Y7 = %b, Y6 = %b, Y5 = %b, Y4 = %b, Y3 = %b, Y2 = %b, Y1 = %b, Y0 = %b", Y[7], Y[6], Y[5], Y[4], Y[3], Y[2], Y[1], Y[0]);
+  end
+end
+endtask
+  
+initial
+begin
+  D = 1'b1;
+  $display("The input value is D = %b", D);
+  select();
+  D = 1'b0;
+  $display("The input value is D = %b", D);
+  select();
+end
+
+endmodule
